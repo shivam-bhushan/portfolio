@@ -1,0 +1,35 @@
+export const TOPICS = ['All', 'Engineering', 'Career', 'Notes'];
+
+export const POSTS = [
+  {
+    slug: 'ack-you-never-got',
+    title: 'The Ack You Never Got: Idempotent Retries in a Scheduling Pipeline',
+    excerpt: 'A lost acknowledgment between two microservices turned into stuck "pending" alerts. The fix was an idempotency key, not a fancier retry.',
+    date: 'Aug 15, 2026',
+    mins: 5,
+    topic: 'Engineering',
+    body: [
+      { type: 'p', text: 'At my current job, I worked on a scheduling and alerting platform: think cron-like jobs that, on failure or on schedule, need to notify someone. The notification path was simple on paper. The alerting service decides an email needs to go out and hands it off to a separate microservice, the email worker, which actually sends it.' },
+      { type: 'p', text: 'Two services, one HTTP call between them. Nothing about that sounds hard.' },
+      { type: 'h2', text: 'The failure we kept seeing' },
+      { type: 'p', text: "Every so often, we'd find alerts stuck in a pending state. Alerting service had decided to send an email, but as far as its own records were concerned, that email had never gone anywhere. We have a separate process, the email sweeper, that periodically scans for exactly this: alerts that look like they should have resulted in a sent email but didn't. The sweeper would find these pending records and flag them." },
+      { type: 'p', text: "The confusing part: the emails had actually gone out. Email worker had received the request, sent the email, and returned a 200. The alerting service just never found that out. Its pod died in the gap between email worker finishing and alerting service processing the response." },
+      { type: 'p', text: "This is an instance of a genuinely old problem in distributed systems, sometimes called the Two Generals Problem: if you send a message and expect an acknowledgment, you can never be fully certain the message was received just because you sent it. The only proof you have is the ack, and the ack itself can be lost, delayed, or, in our case, never observed because the process waiting for it disappeared. From the sender's side, \"my request failed\" and \"my request succeeded but I never found out\" are indistinguishable." },
+      { type: 'h2', text: 'Why "just retry" is not good enough' },
+      { type: 'p', text: "The obvious instinct is: alerting service didn't get confirmation, so resend. But that's dangerous here. Email worker already sent the email once. A naive retry means the recipient gets the same alert twice. For most notification systems, an occasional missed alert is a minor annoyance; a duplicate alert erodes trust in the system a lot faster than people expect." },
+      { type: 'p', text: "So the fix has to answer two questions with a single action: did this already happen, and if not, make it happen, without a race between the two." },
+      { type: 'h2', text: 'The fix: idempotency keys' },
+      { type: 'p', text: "Email worker keys every send request off the schedule ID and keeps a dedicated table recording which schedule IDs it has already processed. Before sending, it checks the table. After sending, it records the ID. Any call that arrives with a schedule ID it's already seen becomes a safe no-op: it can return \"already sent\" instead of sending again." },
+      { type: 'code', text: 'POST /send-email\n{ "schedule_id": "sched_8f21a", "recipient": "...", "template": "..." }\n\nemail worker:\n  if schedule_id in sent_table:\n      return 200 { status: "already_sent" }\n  else:\n      send_email(...)\n      sent_table.insert(schedule_id)\n      return 200 { status: "sent" }' },
+      { type: 'p', text: 'This turns an at-least-once delivery channel into something that behaves like exactly-once from the outside. Not because we guaranteed the message arrives exactly once, but because we made arriving more than once harmless.' },
+      { type: 'h2', text: 'Closing the loop: the sweeper replays the same call' },
+      { type: 'p', text: "This is the part I think is worth calling out specifically, because it's easy to miss: the sweeper doesn't need a separate \"check if this was sent\" API. It just replays the original send request." },
+      { type: 'p', text: 'Because the request is idempotent, that single replay does two jobs at once. If email worker already sent it, the replay is a no-op, and the already_sent response tells the sweeper to correct its own state to sent, so no email goes out twice. If email worker never actually received or processed the original request, the replay sends it for real, for the first time.' },
+      { type: 'p', text: 'One retry, one code path, two different underlying situations resolved correctly. The idempotency key is what makes "just retry it" a legitimate strategy instead of a risky one.' },
+      { type: 'h2', text: 'What this is not' },
+      { type: 'p', text: "Worth being precise: this is not the SAGA pattern. There's no multi-step transaction here and nothing to compensate or roll back. Email worker's send either happened or it didn't, and there's no partial state to undo. This is closer to the idempotent receiver pattern (the same idea behind idempotency keys in the Stripe API), paired with a reconciliation process, the sweeper, that resolves ambiguity by re-asking the question rather than by trying to remember the answer more carefully." },
+      { type: 'h2', text: 'Where this generalizes' },
+      { type: 'p', text: 'Any time a service crosses a network boundary and depends on an acknowledgment it might not receive, this shape of problem shows up: scheduled jobs, payment calls, webhook delivery, retried API requests. The fix is rarely "be more careful about acks." It is "make the operation safe to repeat, and let something ask again."' },
+    ],
+  },
+];

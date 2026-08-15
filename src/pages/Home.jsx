@@ -3,17 +3,12 @@ import { Button } from '../components/Button.jsx';
 import { SectionLabel } from '../components/SectionLabel.jsx';
 import { Card } from '../components/Card.jsx';
 import { Tag } from '../components/Tag.jsx';
+import { POSTS } from '../content/posts.js';
 
 const PROJECTS = [
   { name: 'Low/No-Code DAG Platform', desc: 'Backend microservices and RESTful APIs on Kubernetes powering a low/no-code DAG creation and internal scheduling & alerting platform.', tags: ['Python', 'FastAPI', 'Kubernetes'], year: '2025' },
   { name: 'watchdog-svc', desc: 'Own the microservice powering opt-in reliability alerts on scheduled data pipelines — triggering, lifecycle, and data-integration layer.', tags: ['Python', 'FastAPI'], year: '2025' },
   { name: 'Reusable SSO Middleware', desc: 'A shared Node.js authentication middleware service that cut new-app auth setup effort by ~80%.', tags: ['Node.js', 'Auth'], year: '2025' },
-];
-
-const POSTS = [
-  { title: 'Placeholder post about a technical topic', date: 'Jul 2026', mins: 6 },
-  { title: 'Another placeholder post title goes here', date: 'May 2026', mins: 4 },
-  { title: 'A third placeholder essay, slightly longer title', date: 'Feb 2026', mins: 9 },
 ];
 
 export function Home({ onNavigate }) {
@@ -52,8 +47,8 @@ export function Home({ onNavigate }) {
       <section style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-pad) var(--space-10)' }}>
         <SectionLabel style={{ marginBottom: 16 }}>Recent writing</SectionLabel>
         <div>
-          {POSTS.map((p) => (
-            <a key={p.title} href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('Blog'); }}
+          {POSTS.slice(0, 3).map((p) => (
+            <a key={p.slug} href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('Blog'); }}
               style={{ display: 'flex', alignItems: 'baseline', gap: 24, padding: '22px 0', borderBottom: '1px solid var(--border-subtle)', textDecoration: 'none' }}>
               <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-lg)', fontWeight: 500, color: 'var(--fg-0)', flex: 1 }}>{p.title}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', whiteSpace: 'nowrap' }}>{p.date} · {p.mins} min</span>
