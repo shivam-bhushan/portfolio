@@ -28,8 +28,8 @@ const SKILLS = ['JavaScript (ES6+)', 'TypeScript', 'Python', 'SQL', 'React', 'Fa
 export function Resume() {
   return (
     <div style={{ paddingTop: 120 }} data-screen-label="Resume">
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)', display: 'grid', gridTemplateColumns: '300px 1fr', gap: 'var(--space-8)', alignItems: 'start' }}>
-        <div style={{ position: 'sticky', top: 110, display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div className="resume-grid" style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)' }}>
+        <div className="resume-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-3xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: 0 }}>Resume</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 'var(--leading-body)', color: 'var(--fg-1)', margin: 0 }}>
             Full-Stack Software Engineer with production experience across the stack — React front-ends and scalable backend microservices, containerized with Docker and deployed on GCP.
@@ -53,7 +53,7 @@ export function Resume() {
           <SectionLabel style={{ marginBottom: 32 }}>Experience</SectionLabel>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
             {EXP.map((e) => (
-              <div key={e.role} style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: 24 }}>
+              <div key={e.role} className="resume-row">
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', paddingTop: 3 }}>{e.span}</div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-lg)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)' }}>{e.role}</div>
@@ -66,7 +66,7 @@ export function Resume() {
             ))}
           </div>
           <SectionLabel style={{ margin: '56px 0 24px' }}>Education</SectionLabel>
-          <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: 24 }}>
+          <div className="resume-row">
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', paddingTop: 3 }}>Sept 2020 — Jun 2024</div>
             <div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-lg)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)' }}>B.Tech, Computer Science and Engineering</div>

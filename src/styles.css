@@ -10,3 +10,50 @@ a { color: var(--text-link); }
 a:hover { color: var(--text-link-hover); }
 ::selection { background: rgba(128, 126, 119, 0.25); }
 #root { min-height: 100vh; }
+img, wire-object { max-width: 100%; }
+
+/* Responsive layout primitives — used by page grids via className,
+   so media queries can actually override (inline styles can't be
+   overridden by CSS without !important). */
+.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-8); align-items: center; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.projects-header { display: grid; grid-template-columns: 1fr auto; gap: var(--space-7); align-items: end; }
+.resume-grid { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-8); align-items: start; }
+.resume-sidebar { position: sticky; top: 110px; }
+.resume-row { display: grid; grid-template-columns: 150px 1fr; gap: 24px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-9); align-items: start; }
+.hide-mobile { display: block; }
+
+/* Tablet */
+@media (max-width: 860px) {
+  :root {
+    --text-5xl: 42px;
+    --text-4xl: 34px;
+    --space-9: 56px;
+    --space-10: 88px;
+  }
+  .hero-grid { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .resume-grid { grid-template-columns: 220px 1fr; }
+}
+
+/* Phone */
+@media (max-width: 640px) {
+  :root {
+    --text-5xl: 34px;
+    --text-4xl: 28px;
+    --text-3xl: 26px;
+    --container-pad: 16px;
+    --space-8: 40px;
+    --space-9: 40px;
+    --space-10: 64px;
+  }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .projects-header { grid-template-columns: 1fr; }
+  .resume-grid { grid-template-columns: 1fr; }
+  .resume-sidebar { position: static; top: auto; }
+  .resume-row { grid-template-columns: 1fr; gap: 4px; }
+  .hide-mobile { display: none; }
+}

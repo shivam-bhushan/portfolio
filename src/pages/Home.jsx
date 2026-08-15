@@ -19,7 +19,7 @@ const POSTS = [
 export function Home({ onNavigate }) {
   return (
     <div style={{ paddingTop: 120 }} data-screen-label="Home">
-      <section style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-9) var(--container-pad) var(--space-10)', display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 'var(--space-8)', alignItems: 'center' }}>
+      <section className="hero-grid" style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-9) var(--container-pad) var(--space-10)' }}>
         <div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--fg-2)', marginBottom: 24 }}>Full Stack Software Engineer</div>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-5xl)', lineHeight: 'var(--leading-tight)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: '0 0 24px' }}>
@@ -33,12 +33,12 @@ export function Home({ onNavigate }) {
             <Button variant="secondary" onClick={() => onNavigate && onNavigate('Blog')}>Read the blog</Button>
           </div>
         </div>
-        <wire-object shape="icosahedron" style={{ width: '100%', height: 360 }}></wire-object>
+        <wire-object className="hide-mobile" shape="icosahedron" style={{ width: '100%', height: 360 }}></wire-object>
       </section>
 
       <section style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-pad) var(--space-10)' }}>
         <SectionLabel style={{ marginBottom: 40 }}>Selected work</SectionLabel>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+        <div className="grid-3">
           {PROJECTS.map((p) => (
             <Card key={p.name} label={p.year} onClick={() => onNavigate && onNavigate('Projects')}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-lg)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', marginBottom: 10 }}>{p.name}</div>

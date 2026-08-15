@@ -26,7 +26,7 @@ export function Contact() {
 
   return (
     <div style={{ paddingTop: 120 }} data-screen-label="Contact">
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-9)', alignItems: 'start' }}>
+      <div className="contact-grid" style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)' }}>
         <div>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-4xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: '0 0 16px' }}>Get in touch</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-body)', color: 'var(--fg-1)', maxWidth: 420, margin: '0 0 40px' }}>
@@ -40,7 +40,7 @@ export function Contact() {
               </div>
             ))}
           </div>
-          <wire-object shape="torusknot" style={{ width: 220, height: 220 }}></wire-object>
+          <wire-object className="hide-mobile" shape="torusknot" style={{ width: 220, height: 220 }}></wire-object>
         </div>
         <Card hoverable={false} padding={32}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>

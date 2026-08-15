@@ -20,19 +20,19 @@ export function Projects() {
   return (
     <div style={{ paddingTop: 120 }} data-screen-label="Projects">
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'var(--space-7)', alignItems: 'end', marginBottom: 56 }}>
+        <div className="projects-header" style={{ marginBottom: 56 }}>
           <div>
             <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-4xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: '0 0 16px' }}>Projects</h1>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)', lineHeight: 'var(--leading-body)', color: 'var(--fg-1)', maxWidth: 480, margin: 0 }}>
               Backend microservices, automation tooling, and full-stack apps — built at Walmart Global Tech and IIT Madras.
             </p>
           </div>
-          <wire-object shape="octahedron" style={{ width: 140, height: 140 }}></wire-object>
+          <wire-object className="hide-mobile" shape="octahedron" style={{ width: 140, height: 140 }}></wire-object>
         </div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
           {KINDS.map((k) => <Tag key={k} active={k === kind} onClick={() => setKind(k)}>{k}</Tag>)}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20 }}>
+        <div className="grid-2">
           {shown.map((p) => (
             <Card key={p.name} label={p.year}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', marginBottom: 10 }}>{p.name}</div>
