@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { NavBar } from './components/NavBar.jsx';
 import { IconButton } from './components/IconButton.jsx';
 import { Home } from './pages/Home.jsx';
@@ -32,20 +33,28 @@ function Footer() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  React.useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 export default function App() {
-  const [route, setRoute] = React.useState('Home');
-  const [post, setPost] = React.useState(null);
-  const nav = (r) => { setPost(null); setRoute(r); window.scrollTo(0, 0); };
-  let screen = null;
-  if (route === 'Home') screen = <Home onNavigate={nav} />;
-  else if (route === 'Projects') screen = <Projects />;
-  else if (route === 'Blog') screen = post ? <BlogPost post={post} onBack={() => setPost(null)} /> : <Blog onOpenPost={setPost} />;
-  else if (route === 'Resume') screen = <Resume />;
-  else if (route === 'Contact') screen = <Contact />;
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }} data-screen-label={route}>
-      <NavBar items={['Home', 'Projects', 'Blog', 'Resume', 'Contact']} active={route} onNavigate={nav} extra={<ThemeToggle />} />
-      <div style={{ flex: 1 }}>{screen}</div>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <ScrollToTop />
+      <NavBar extra={<ThemeToggle />} />
+      <div style={{ flex: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

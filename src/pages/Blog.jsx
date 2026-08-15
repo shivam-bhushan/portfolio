@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Tabs } from '../components/Tabs.jsx';
 import { POSTS, TOPICS } from '../content/posts.js';
 
-export function Blog({ onOpenPost }) {
+export function Blog() {
+  const navigate = useNavigate();
   const [topic, setTopic] = React.useState('All');
   const shown = topic === 'All' ? POSTS : POSTS.filter((p) => p.topic === topic);
   return (
@@ -18,7 +20,7 @@ export function Blog({ onOpenPost }) {
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--fg-2)', padding: '40px 0' }}>No posts in this topic yet.</p>
           )}
           {shown.map((p) => (
-            <a key={p.slug} href="#" onClick={(e) => { e.preventDefault(); onOpenPost && onOpenPost(p); }}
+            <a key={p.slug} href={`/blog/${p.slug}`} onClick={(e) => { e.preventDefault(); navigate(`/blog/${p.slug}`); }}
               style={{ display: 'block', padding: '28px 0', borderBottom: '1px solid var(--border-subtle)', textDecoration: 'none' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', marginBottom: 8 }}>{p.date} · {p.mins} min · {p.topic}</div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', marginBottom: 8 }}>{p.title}</div>

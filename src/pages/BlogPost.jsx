@@ -1,12 +1,28 @@
 import React from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/Button.jsx';
+import { POSTS } from '../content/posts.js';
 
-export function BlogPost({ post, onBack }) {
-  if (!post) return null;
+export function BlogPost() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const post = POSTS.find((p) => p.slug === slug);
+
+  if (!post) {
+    return (
+      <div style={{ paddingTop: 120 }} data-screen-label="Blog post">
+        <div style={{ maxWidth: 680, margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)' }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--fg-2)', marginBottom: 24 }}>Post not found.</p>
+          <Link to="/blog" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', textDecoration: 'none' }}>← All writing</Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ paddingTop: 120 }} data-screen-label="Blog post">
       <article style={{ maxWidth: 680, margin: '0 auto', padding: 'var(--space-8) var(--container-pad) var(--space-10)' }}>
-        <a href="#" onClick={(e) => { e.preventDefault(); onBack && onBack(); }} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', textDecoration: 'none' }}>← All writing</a>
+        <Link to="/blog" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', textDecoration: 'none' }}>← All writing</Link>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', margin: '40px 0 16px' }}>{post.date} · {post.mins} min · {post.topic}</div>
         <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-3xl)', lineHeight: 1.15, letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: '0 0 32px' }}>{post.title}</h1>
         {post.body.map((block, i) => {
@@ -32,7 +48,7 @@ export function BlogPost({ post, onBack }) {
         })}
         <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)' }}>Thanks for reading.</span>
-          <Button variant="secondary" size="sm" onClick={onBack}>Back to all posts</Button>
+          <Button variant="secondary" size="sm" onClick={() => navigate('/blog')}>Back to all posts</Button>
         </div>
       </article>
     </div>

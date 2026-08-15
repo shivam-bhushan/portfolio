@@ -1,8 +1,23 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { StatusDot } from './StatusDot.jsx';
 import { IconButton } from './IconButton.jsx';
 
-export function NavBar({ items = ['Home', 'Projects', 'Blog', 'Resume'], active, onNavigate, statusLabel = 'Open to work', extra = null, fixed = true, style }) {
+const ITEMS = [
+  { label: 'Home', to: '/' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Resume', to: '/resume' },
+  { label: 'Contact', to: '/contact' },
+];
+
+function isActive(pathname, to) {
+  if (to === '/') return pathname === '/';
+  return pathname === to || pathname.startsWith(to + '/');
+}
+
+export function NavBar({ statusLabel = 'Open to work', extra = null, fixed = true, style }) {
+  const { pathname } = useLocation();
   const [hovered, setHovered] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
@@ -15,9 +30,7 @@ export function NavBar({ items = ['Home', 'Projects', 'Blog', 'Resume'], active,
     return () => mq.removeEventListener('change', update);
   }, []);
 
-  React.useEffect(() => { setOpen(false); }, [active]);
-
-  const go = (it) => { setOpen(false); onNavigate && onNavigate(it); };
+  React.useEffect(() => { setOpen(false); }, [pathname]);
 
   return (
     <nav style={{
@@ -26,26 +39,26 @@ export function NavBar({ items = ['Home', 'Projects', 'Blog', 'Resume'], active,
       background: 'var(--bg-glass)', backdropFilter: 'var(--blur-glass)', WebkitBackdropFilter: 'var(--blur-glass)',
       borderBottom: '1px solid var(--border-subtle)', ...style,
     }}>
-      <a href="#" onClick={(e) => { e.preventDefault(); go(items[0]); }}
+      <Link to="/"
         style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: 'var(--fg-0)', textDecoration: 'none', letterSpacing: 'var(--tracking-display)', whiteSpace: 'nowrap' }}>
         shivambhushan.com
-      </a>
+      </Link>
 
       {!isMobile && (
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {items.map((it) => {
-            const on = it === active;
+          {ITEMS.map((it) => {
+            const on = isActive(pathname, it.to);
             return (
-              <a key={it} href="#" onClick={(e) => { e.preventDefault(); go(it); }}
-                onMouseEnter={() => setHovered(it)} onMouseLeave={() => setHovered(null)}
+              <Link key={it.label} to={it.to}
+                onMouseEnter={() => setHovered(it.label)} onMouseLeave={() => setHovered(null)}
                 style={{
                   fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: on ? 600 : 400, textDecoration: 'none',
                   padding: '6px 12px', borderRadius: 'var(--radius-control)',
-                  color: on ? 'var(--fg-0)' : hovered === it ? 'var(--fg-0)' : 'var(--fg-2)',
+                  color: on ? 'var(--fg-0)' : hovered === it.label ? 'var(--fg-0)' : 'var(--fg-2)',
                   background: on ? 'var(--bg-2)' : 'transparent',
                   transition: 'all var(--dur-fast) var(--ease-glide)',
                 }}
-              >{it}</a>
+              >{it.label}</Link>
             );
           })}
         </div>
@@ -64,16 +77,16 @@ export function NavBar({ items = ['Home', 'Projects', 'Blog', 'Resume'], active,
           background: 'var(--surface-card)', borderBottom: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-pop)', display: 'flex', flexDirection: 'column', padding: '4px 20px 16px',
         }}>
-          {items.map((it) => {
-            const on = it === active;
+          {ITEMS.map((it) => {
+            const on = isActive(pathname, it.to);
             return (
-              <a key={it} href="#" onClick={(e) => { e.preventDefault(); go(it); }}
+              <Link key={it.label} to={it.to}
                 style={{
                   fontFamily: 'var(--font-body)', fontSize: 15, fontWeight: on ? 600 : 400, textDecoration: 'none',
                   padding: '13px 2px', borderBottom: '1px solid var(--border-subtle)',
                   color: on ? 'var(--fg-0)' : 'var(--fg-1)',
                 }}
-              >{it}</a>
+              >{it.label}</Link>
             );
           })}
           {statusLabel && <div style={{ padding: '14px 2px 0' }}><StatusDot label={statusLabel} /></div>}
