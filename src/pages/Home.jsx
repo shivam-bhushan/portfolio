@@ -5,12 +5,7 @@ import { SectionLabel } from '../components/SectionLabel.jsx';
 import { Card } from '../components/Card.jsx';
 import { Tag } from '../components/Tag.jsx';
 import { POSTS } from '../content/posts.js';
-
-const PROJECTS = [
-  { name: 'Low/No-Code DAG Platform', desc: 'Backend microservices and RESTful APIs on Kubernetes powering a low/no-code DAG creation and internal scheduling & alerting platform.', tags: ['Python', 'FastAPI', 'Kubernetes'], year: '2025' },
-  { name: 'watchdog-svc', desc: 'Own the microservice powering opt-in reliability alerts on scheduled data pipelines — triggering, lifecycle, and data-integration layer.', tags: ['Python', 'FastAPI'], year: '2025' },
-  { name: 'Reusable SSO Middleware', desc: 'A shared Node.js authentication middleware service that cut new-app auth setup effort by ~80%.', tags: ['Node.js', 'Auth'], year: '2025' },
-];
+import { PROJECTS } from '../content/projects.js';
 
 export function Home() {
   const navigate = useNavigate();
@@ -36,11 +31,19 @@ export function Home() {
       <section style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-pad) var(--space-10)' }}>
         <SectionLabel style={{ marginBottom: 40 }}>Selected work</SectionLabel>
         <div className="grid-3">
-          {PROJECTS.map((p) => (
+          {PROJECTS.slice(0, 3).map((p) => (
             <Card key={p.name} label={p.year} onClick={() => navigate('/projects')}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-lg)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', marginBottom: 10 }}>{p.name}</div>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--fg-1)', margin: '0 0 18px' }}>{p.desc}</p>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{p.tags.map((t) => <Tag key={t}>{t}</Tag>)}</div>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                {p.tags.map((t) => <Tag key={t}>{t}</Tag>)}
+                {p.link && (
+                  <a href={p.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
+                    style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                    {p.linkLabel} ↗
+                  </a>
+                )}
+              </div>
             </Card>
           ))}
         </div>
