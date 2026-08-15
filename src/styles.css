@@ -1,0 +1,12 @@
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/effects.css";
+
+html, body { margin: 0; background: var(--surface-page); color: var(--text-body); min-height: 100%; transition: background 200ms ease; }
+* { box-sizing: border-box; }
+a { color: var(--text-link); }
+a:hover { color: var(--text-link-hover); }
+::selection { background: rgba(128, 126, 119, 0.25); }
+#root { min-height: 100vh; }

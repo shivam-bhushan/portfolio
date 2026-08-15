@@ -1,0 +1,67 @@
+:root {
+  /* Light (default) — warm paper monochrome */
+  --bg-0: #faf9f7;
+  --bg-1: #ffffff;
+  --bg-2: #f1efeb;
+  --bg-3: #e7e5e0;
+  --bg-glass: rgba(250, 249, 247, 0.82);
+
+  --fg-0: #1c1b19;
+  --fg-1: #4a4844;
+  --fg-2: #8a8781;
+  --fg-disabled: #b8b5ae;
+
+  --accent: #1c1b19;          /* ink — the only "accent" is contrast */
+  --on-accent: #faf9f7;
+
+  --border-subtle: rgba(28, 27, 25, 0.10);
+  --border-strong: rgba(28, 27, 25, 0.26);
+
+  --success: #5b8a68;
+  --warning: #a8842f;
+  --danger: #b05252;
+
+  --surface-page: var(--bg-0);
+  --surface-card: var(--bg-1);
+  --surface-raised: var(--bg-1);
+  --surface-overlay: rgba(28, 27, 25, 0.35);
+  --text-heading: var(--fg-0);
+  --text-body: var(--fg-1);
+  --text-muted: var(--fg-2);
+  --text-link: var(--fg-0);
+  --text-link-hover: var(--fg-1);
+  --accent-primary: var(--accent);
+  --accent-secondary: var(--fg-2);
+
+  --shadow-card: 0 1px 2px rgba(28, 27, 25, 0.04);
+  --shadow-pop: 0 12px 40px rgba(28, 27, 25, 0.14);
+  --wire-opacity: 0.35;       /* stroke opacity for 3D wireframe accents */
+}
+
+[data-theme="dark"] {
+  --bg-0: #131312;
+  --bg-1: #1a1a19;
+  --bg-2: #222220;
+  --bg-3: #2c2c29;
+  --bg-glass: rgba(19, 19, 18, 0.82);
+
+  --fg-0: #f0efeb;
+  --fg-1: #b6b4ad;
+  --fg-2: #7d7b74;
+  --fg-disabled: #55534e;
+
+  --accent: #f0efeb;
+  --on-accent: #131312;
+
+  --border-subtle: rgba(240, 239, 235, 0.10);
+  --border-strong: rgba(240, 239, 235, 0.28);
+
+  --success: #7fa88b;
+  --warning: #c2a25a;
+  --danger: #c47b7b;
+
+  --surface-overlay: rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --wire-opacity: 0.3;
+}

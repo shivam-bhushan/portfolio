@@ -1,0 +1,15 @@
+:root {
+  /* Radii — quiet rectangles, no pills except dots */
+  --radius-pill: 999px;
+  --radius-card: 10px;
+  --radius-control: 8px;
+  --radius-tag: 4px;
+
+  /* Motion */
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+
+  /* Overlays */
+  --blur-glass: blur(12px);
+}
