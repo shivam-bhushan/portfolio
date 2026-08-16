@@ -32,7 +32,7 @@ export function Resume() {
         <div className="resume-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-3xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: 0 }}>Resume</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 'var(--leading-body)', color: 'var(--fg-1)', margin: 0 }}>
-            Full-Stack Software Engineer with production experience across the stack — React front-ends and scalable backend microservices, containerized with Docker and deployed on GCP.
+            Full-Stack Software Engineer with production experience across the stack — React front-ends and scalable backend microservices, containerized with Docker and deployed on Kubernetes.
           </p>
           <div style={{ display: 'flex', gap: 10 }}>
             <Button size="sm" href="/resume.pdf">Download PDF</Button>
