@@ -9,8 +9,8 @@ const EXP = [
     pts: [
       'Built an AI-powered low/no-code DAG creation platform (React, FastAPI, Google ADK) enabling users to generate Airflow workflows through a conversational LLM interface, applying RAG-style retrieval and agentic workflows in production.',
       'Developed an ML-powered natural-language analytics assistant (Walmart AI Hackathon) using LangChain-backed pipelines, allowing business users to query data insights conversationally.',
-      "Architected Danny's scheduling and alerting engine guaranteeing zero duplicate/lost deliveries across ~50K–60K daily emails, validated under 20% injected fault scenarios with zero drops in production.",
-      "Built Danny's watchdog service, integrating ML-based anomaly detection across multiple sensors covering different data-quality issues, in collaboration with an ML team.",
+      "Built core components of DannY's scheduling and alerting engine (3-engineer team), guaranteeing zero duplicate/lost deliveries across ~50K–60K daily emails, validated under 20% injected fault scenarios with zero drops in production.",
+      "Built DannY's watchdog service, integrating ML-based anomaly detection across multiple sensors covering different data-quality issues, in collaboration with an ML team.",
       'Diagnosed compatibility blockers preventing MFA enforcement across 5,000+ DAGs in 7 markets; engineered framework-level fixes ensuring forward/backward compatibility, delivering compliance within a 14-day deadline.',
       'Automated migration of thousands of DAGs across platform versions using Python and GCP APIs, cutting per-DAG migration time from ~40 to 15 minutes.',
       "Built a reusable SSO middleware (Node.js) cutting new-app auth setup by ~80%, and set up CI/CD pipelines for the platform's microservices.",
