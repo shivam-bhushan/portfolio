@@ -7,23 +7,23 @@ const EXP = [
   {
     role: 'Software Engineer 2', org: 'Walmart Global Tech, Bangalore', span: 'Jan 2025 — Present',
     pts: [
-      'Build backend microservices and RESTful APIs (Python/FastAPI, Node.js) on Kubernetes for a low/no-code DAG creation platform and an internal scheduling & alerting service used across teams.',
+      'Built an AI-powered low/no-code DAG creation platform (React, FastAPI, Google ADK) enabling users to generate Airflow workflows through a conversational LLM interface, applying RAG-style retrieval and agentic workflows in production.',
+      'Developed an ML-powered natural-language analytics assistant (Walmart AI Hackathon) using LangChain-backed pipelines, allowing business users to query data insights conversationally.',
+      "Architected Danny's scheduling and alerting engine guaranteeing zero duplicate/lost deliveries across ~50K–60K daily emails, validated under 20% injected fault scenarios with zero drops in production.",
+      "Built Danny's watchdog service, integrating ML-based anomaly detection across multiple sensors covering different data-quality issues, in collaboration with an ML team.",
+      'Diagnosed compatibility blockers preventing MFA enforcement across 5,000+ DAGs in 7 markets; engineered framework-level fixes ensuring forward/backward compatibility, delivering compliance within a 14-day deadline.',
       'Automated migration of thousands of DAGs across platform versions using Python and GCP APIs, cutting per-DAG migration time from ~40 to 15 minutes.',
-      'Diagnosed compatibility issues blocking MFA enforcement across 5,000+ DAGs in 7 markets ahead of a 14-day org-wide deadline; engineered a fix ensuring forward and backward compatibility.',
-      'Own the watchdog-svc microservice powering opt-in reliability alerts on scheduled data pipelines — built the triggering, lifecycle, and data-integration layer, coordinating with an ML team on the detection model.',
-      "Own scale and reliability for the platform's delivery pipeline — built the ingestion API and automated LLM-based change-summary generation, ensuring lakhs of alert deliveries reach thousands of internal users daily with zero dropped or duplicate sends (idempotent processing, retry/backoff).",
-      'Built a reusable SSO authentication middleware (Node.js) as a shared service, cutting new-app auth setup effort by ~80%, and set up CI/CD pipelines for the platform\'s microservices.',
+      "Built a reusable SSO middleware (Node.js) cutting new-app auth setup by ~80%, and set up CI/CD pipelines for the platform's microservices.",
     ],
   },
   {
     role: 'Research and Development Intern', org: 'IIT Madras, Chennai', span: 'Jan 2024 — Jul 2024',
     pts: [
-      'Designed and implemented a desktop GUI (Electron, React.js, Node.js) for a Vessel Management System, consolidating multiple backend endpoints and streamlining operations.',
-      'Built REST APIs and a React Native application to enable real-time, reliable data transmission between sailors and navigating officers.',
+      'Designed a desktop GUI (Electron, React.js, Node.js) for a Vessel Management System, consolidating multiple backend endpoints, and built REST APIs plus a React Native app for real-time data transmission between sailors and navigating officers.',
     ],
   },
 ];
-const SKILLS = ['JavaScript (ES6+)', 'TypeScript', 'Python', 'SQL', 'React', 'FastAPI', 'Node.js', 'Express.js', 'MySQL', 'PostgreSQL', 'Redis', 'Google Cloud Platform', 'Docker', 'Kubernetes', 'Git', 'CI/CD'];
+const SKILLS = ['Python', 'JavaScript (ES6+)', 'SQL', 'React.js', 'FastAPI', 'Node.js', 'Express.js', 'LangChain', 'Google ADK', 'RAG Architectures', 'Agentic Workflows', 'PostgreSQL', 'MySQL', 'Redis', 'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Git'];
 
 export function Resume() {
   return (
@@ -32,7 +32,7 @@ export function Resume() {
         <div className="resume-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-3xl)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)', margin: 0 }}>Resume</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 'var(--leading-body)', color: 'var(--fg-1)', margin: 0 }}>
-            Full-Stack Software Engineer with production experience across the stack — React front-ends and scalable backend microservices, containerized with Docker and deployed on Kubernetes.
+            Full-Stack Software Engineer building scalable backend microservices, responsive React frontends, and Generative AI applications — LLM-powered tools with LangChain, Google ADK, and RAG pipelines, shipped on Kubernetes.
           </p>
           <div style={{ display: 'flex', gap: 10 }}>
             <Button size="sm" href="/resume.pdf">Download PDF</Button>
@@ -45,7 +45,7 @@ export function Resume() {
           <div>
             <SectionLabel rule={false} style={{ marginBottom: 12 }}>Awards</SectionLabel>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.6, color: 'var(--fg-1)', margin: 0 }}>
-              Walmart Bravo Award — recognized as an early adopter of GenAI within the team and for proactively building automation tools from the ground up.
+              Walmart Bravo Award — recognized as an early adopter of GenAI and for proactively building automation tools from the ground up, driving measurable impact on developer productivity and AI adoption across the data organization.
             </p>
           </div>
         </div>
