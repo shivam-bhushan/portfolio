@@ -40,7 +40,7 @@ export function Contact() {
               </div>
             ))}
           </div>
-          <wire-object className="hide-mobile" shape="figure" style={{ width: 220, height: 220 }}></wire-object>
+          <wire-object className="hide-mobile" shape="torusknot" style={{ width: 220, height: 220 }}></wire-object>
         </div>
         <Card hoverable={false} padding={32}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
