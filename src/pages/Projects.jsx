@@ -18,7 +18,7 @@ export function Projects() {
               Kado, the startup I'm building, plus backend microservices and automation tooling from Walmart Global Tech and IIT Madras.
             </p>
           </div>
-          <wire-object className="hide-mobile" shape="octahedron" style={{ width: 140, height: 140 }}></wire-object>
+          <wire-object className="hide-mobile" shape="controller" style={{ width: 140, height: 140 }}></wire-object>
         </div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
           {KINDS.map((k) => <Tag key={k} active={k === kind} onClick={() => setKind(k)}>{k}</Tag>)}

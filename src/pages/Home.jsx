@@ -25,7 +25,7 @@ export function Home() {
             <Button variant="secondary" onClick={() => navigate('/blog')}>Read the blog</Button>
           </div>
         </div>
-        <wire-object className="hide-mobile" shape="icosahedron" style={{ width: '100%', height: 360 }}></wire-object>
+        <wire-object className="hide-mobile" shape="keyboard" style={{ width: '100%', height: 360 }}></wire-object>
       </section>
 
       <section style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-pad) var(--space-10)' }}>
