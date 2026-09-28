@@ -7,13 +7,13 @@ const EXP = [
   {
     role: 'Software Engineer 2', org: 'Walmart Global Tech, Bangalore', span: 'Jan 2025 — Present',
     pts: [
-      'Built an AI-powered low/no-code DAG creation platform (React, FastAPI, Google ADK) enabling users to generate Airflow workflows through a conversational LLM interface, applying RAG-style retrieval and agentic workflows in production.',
+      'Built a full-stack, LLM-powered Airflow DAG generation platform using React, FastAPI, and Google ADK, enabling users to create workflows through a conversational interface with retrieval-augmented generation and agentic orchestration in production.',
       'Developed an ML-powered natural-language analytics assistant (Walmart AI Hackathon) using LangChain-backed pipelines, allowing business users to query data insights conversationally.',
-      "Built core components of DannY's scheduling and alerting engine (3-engineer team), guaranteeing zero duplicate/lost deliveries across ~50K–60K daily emails, validated under 20% injected fault scenarios with zero drops in production.",
-      "Built DannY's watchdog service, integrating ML-based anomaly detection across multiple sensors covering different data-quality issues, in collaboration with an ML team.",
-      'Diagnosed compatibility blockers preventing MFA enforcement across 5,000+ DAGs in 7 markets; engineered framework-level fixes ensuring forward/backward compatibility, delivering compliance within a 14-day deadline.',
-      'Automated migration of thousands of DAGs across platform versions using Python and GCP APIs, cutting per-DAG migration time from ~40 to 15 minutes.',
-      "Built a reusable SSO middleware (Node.js) cutting new-app auth setup by ~80%, and set up CI/CD pipelines for the platform's microservices.",
+      "Engineered core components of DannY (3-engineer team), a self-serve scheduling and alerting platform that turns analysts' ad-hoc KPI queries into recurring reports and threshold alerts; its engine processes 50K–60K daily email deliveries with zero duplicate or lost deliveries, validated through fault-injection testing with 20% injected faults.",
+      "Built DannY's watchdog service with ML-based anomaly detection across multiple sensors; owned automated unit and integration testing, Kubernetes deployments using Docker and CI/CD, and production debugging of scheduling, delivery, API, and performance issues.",
+      'Diagnosed compatibility blockers preventing MFA enforcement across 5,000+ Airflow DAGs in 7 markets, enabling backward and forward-compatible enforcement within a 14-day compliance deadline.',
+      'Automated migration of thousands of Airflow DAGs across platform versions using Python and GCP APIs, reducing migration time from ~40 to ~15 minutes per DAG.',
+      'Developed reusable Node.js SSO middleware that reduced authentication setup effort for new applications by ~80%; established CI/CD pipelines for platform microservices.',
     ],
   },
   {
@@ -23,7 +23,17 @@ const EXP = [
     ],
   },
 ];
-const SKILLS = ['Python', 'JavaScript (ES6+)', 'SQL', 'React.js', 'FastAPI', 'Node.js', 'Express.js', 'LangChain', 'Google ADK', 'RAG Architectures', 'Agentic Workflows', 'PostgreSQL', 'MySQL', 'Redis', 'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Git'];
+const PROJECTS = [
+  {
+    name: 'Kado', org: 'kado.studio', span: '2025',
+    pts: [
+      'Solo-building an AI-native platform that helps marketing agencies plan, create, and launch ad campaigns faster. (TypeScript, React, Node.js, Prisma, GCP Cloud Run, Claude API)',
+      'Designed the orchestration engine: a durable workflow executor chaining 14+ steps (brand scraping, AI copy and image generation, human-in-the-loop approval gates, Meta Ads publishing, performance sync), using a clean-architecture split that isolates business logic from Prisma, the Meta API, and AI providers.',
+      'Built the Meta Ads publishing pipeline end-to-end (campaign → ad set → creative), with objective-specific optimization-goal mapping and a self-healing recovery path for stale or orphaned ad-account links.',
+    ],
+  },
+];
+const SKILLS = ['Python', 'JavaScript (ES6+)', 'SQL', 'React.js', 'Tailwind CSS', 'HTML5/CSS3', 'FastAPI', 'Node.js', 'Express.js', 'RESTful API Design', 'Microservices', 'LangChain', 'Google ADK', 'RAG Architectures', 'Prompt Engineering', 'Agentic Workflows', 'PostgreSQL', 'MySQL', 'Kafka', 'Redis', 'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Git'];
 
 export function Resume() {
   return (
@@ -60,6 +70,21 @@ export function Resume() {
                   <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-2)', margin: '4px 0 12px' }}>{e.org}</div>
                   <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {e.pts.map((p) => <li key={p} style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--fg-1)' }}>{p}</li>)}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+          <SectionLabel style={{ margin: '56px 0 24px' }}>Projects</SectionLabel>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+            {PROJECTS.map((p) => (
+              <div key={p.name} className="resume-row">
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)', paddingTop: 3 }}>{p.span}</div>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'var(--text-lg)', letterSpacing: 'var(--tracking-display)', color: 'var(--fg-0)' }}>{p.name}</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-2)', margin: '4px 0 12px' }}>{p.org}</div>
+                  <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {p.pts.map((pt) => <li key={pt} style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--fg-1)' }}>{pt}</li>)}
                   </ul>
                 </div>
               </div>
